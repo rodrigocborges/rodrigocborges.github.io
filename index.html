@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="public/favicon.svg" type="image/x-icon">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
@@ -16,8 +17,47 @@
 </head>
 
 <body>
-  <h1>Hello Me Indica Aí</h1>
-  <button type="button" class="button">Click me</button>
+
+  <nav>
+    <div id="logo-container">
+      <a href="/">
+        <img src="/public/logo.svg" alt="Me Indica Aí Logo">
+      </a>
+    </div>
+    <ul>
+      <li class="menu-item">
+        <a href="/" class="isActive">INÍCIO</a>
+      </li>
+      <li class="menu-item">
+        <a href="/filmes">FILMES</a>
+      </li>
+      <li class="menu-item">
+        <a href="/series">SÉRIES</a>
+      </li>
+    </ul>
+  </nav>
+
+  <main>
+    <section id="section1"></section>
+    <section id="section2">
+      <div id="section2-container">
+        <h2>Últimas</h2>
+        <div id="section2-main-container"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div id="footer-contact">
+      <div>
+        <p class="footer-text">Contato</p>
+        <span>contato@email.com</span>
+      </div>
+      <a href="#" class="footer-text">Termos</a>
+      <a href="#" class="footer-text">Privacidade</a>
+    </div>
+    <div id="trademark">2021 ® MeIndicaAi </div>
+  </footer>
 </body>
 
 <script src="/scripts/index.js"></script>
