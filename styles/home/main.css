@@ -90,7 +90,7 @@ main {
 }
 
 .long-card-content .title {
-  font: bold 32px/30px 'Fjalla One', sans-serif;
+  font: bold 32px/48px 'Fjalla One', sans-serif;
   color: var(--primary);
 }
 
