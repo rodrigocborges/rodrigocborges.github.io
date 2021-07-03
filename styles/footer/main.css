@@ -1,0 +1,58 @@
+footer {  
+  background: var(--black);
+  color: var(--white);
+
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 24px 15px;
+}
+
+#footer-contact {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+
+  width: 100%;
+
+  justify-content: center;
+  align-items: center;
+}
+
+#footer-contact > div:nth-child(2) {
+  display: flex;
+  gap: 50px;
+
+  justify-content: center;
+}
+
+.footer-text {
+  color: var(--primary);
+  font: bold 18px/30px 'Khand', sans-serif;
+}
+
+#footer-contact > div:nth-child(2) > a:hover {
+  opacity: 0.8;
+}
+
+#footer-contact > div:first-child {
+  text-align: end;
+}
+
+#footer-contact > a:hover {
+  opacity: 0.8;
+}
+
+@media (min-width: 320px) and (max-width: 650px) {
+  #footer-contact {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 25px;
+
+    text-align: center;
+  }
+
+  #footer-contact > div:first-child {
+    text-align: center;
+  }
+}

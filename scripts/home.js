@@ -67,7 +67,9 @@ section2MainContainer.innerHTML = longCards.map(({ img, title, subtitle }) =>
     <div class="long-card-content">
       <h4 class="title">${title}</h4>
       <p class="synopsis">${subtitle}</p>
-      <a href="#">Leia mais...</a>
+      <div id="read-more">
+        <a href="#">Leia mais...</a>
+      </div>
   </div>
 </div>`
 ).join('');
