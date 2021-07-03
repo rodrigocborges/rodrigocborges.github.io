@@ -17,24 +17,6 @@ a {
   text-decoration: none;
 }
 
-@media (min-width: 769px) {
-  main {
-    height: calc(100% - 80px - 103px);
-  }
-}
-
-@media (min-width: 651px) and (max-width: 768px) {
-  main {
-    height: calc(100% - 73px - 103px);
-  }
-}
-
-@media (max-width: 650px) {
-  main {
-    height: calc(100% - 73px - 208px);
-  }
-}
-
 :root {
   --primary: #8257E5;
   --secondary: #F5DD00;
