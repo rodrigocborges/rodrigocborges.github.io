@@ -1,0 +1,45 @@
+.hamburger {
+  display: none;
+}
+
+.normal-menu {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+
+	height: 80px;
+	padding: 0 200px;
+
+	background: var(--black);
+}
+
+nav #logo-container:hover {
+  cursor: pointer;
+}
+
+.normal-menu > ul {
+  display: flex;
+  justify-content: space-between;
+
+  gap: 16px;
+
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-item > a {
+  color: var(--white);
+  text-transform: uppercase;
+  font: 400 16px 'Fjalla One', sans-serif;
+}
+
+.menu-item > a:hover {
+  opacity: 0.8;
+}
+
+.normal-menu > ul .isActive {
+  background-color: var(--primary);
+  padding: 8px;
+  cursor: default;
+}

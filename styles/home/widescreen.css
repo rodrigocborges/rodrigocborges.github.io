@@ -1,0 +1,17 @@
+main {
+	margin-top: 32px;
+}
+
+#section1 {
+	grid-template-columns: repeat(3, 1fr);
+
+  padding: 0 75px;
+}
+
+#section2-container {
+  padding: 0 75px;
+}
+
+.long-card-container {
+  display: flex;
+}

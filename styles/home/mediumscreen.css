@@ -1,0 +1,29 @@
+#section1 {
+  grid-template-columns: repeat(2, 1fr);
+  
+  padding: 0 25px;
+}
+
+#section2-container {
+  padding: 0 25px;
+}
+
+@media (min-width: 590px) {
+  .long-card-container {
+    display: flex;
+  }
+}
+
+@media (max-width: 589px) {
+  .long-card-container {
+    text-align: center;
+  }
+}
+
+.card #subtitle {
+  font-size: 22px;
+}
+
+.card #subtitle {
+  font-size: 28px;
+}

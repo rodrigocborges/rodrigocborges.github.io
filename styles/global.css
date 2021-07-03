@@ -10,11 +10,29 @@ body {
 }
 
 body, input, button, textarea {
-  font: 400 16px 'Roboto', sans-serif;
+  font: 400 16px 'Khand', sans-serif;
 }
 
 a {
   text-decoration: none;
+}
+
+@media (min-width: 769px) {
+  main {
+    height: calc(100% - 80px - 103px);
+  }
+}
+
+@media (min-width: 651px) and (max-width: 768px) {
+  main {
+    height: calc(100% - 73px - 103px);
+  }
+}
+
+@media (max-width: 650px) {
+  main {
+    height: calc(100% - 73px - 208px);
+  }
 }
 
 :root {
