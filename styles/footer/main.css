@@ -1,16 +1,13 @@
 footer {  
+  padding: 24px 15px;
+
   background: var(--black);
   color: var(--white);
-
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 24px 15px;
 }
 
 #footer-contact {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 300px 250px;
   gap: 25px;
 
   width: 100%;
@@ -19,7 +16,7 @@ footer {
   align-items: center;
 }
 
-#footer-contact > div:nth-child(2) {
+#footer-contact > div:first-child {
   display: flex;
   gap: 50px;
 
@@ -31,7 +28,7 @@ footer {
   font: bold 18px/30px 'Khand', sans-serif;
 }
 
-#footer-contact > div:nth-child(2) > a:hover {
+#footer-contact > div:first-child > a:hover {
   opacity: 0.8;
 }
 
@@ -41,6 +38,10 @@ footer {
 
 #footer-contact > a:hover {
   opacity: 0.8;
+}
+
+#trademark {
+  text-align: end;
 }
 
 @media (min-width: 320px) and (max-width: 650px) {
@@ -53,6 +54,10 @@ footer {
   }
 
   #footer-contact > div:first-child {
+    text-align: center;
+  }
+
+  #trademark {
     text-align: center;
   }
 }
