@@ -1,0 +1,106 @@
+.contact-main {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 32px auto;
+
+  height: 100%;
+}
+
+.contact-section { 
+  margin: 0 auto;
+  padding: 24px 32px;
+
+  width: 50%;
+
+  background-color: var(--white);
+
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+@media (min-width: 617px) and (max-width: 1074px) {
+  .contact-section { 
+    width: 544px;
+  }
+}
+
+@media (min-width: 320px) and (max-width: 616px) {
+  .contact-section { 
+    width: calc(100% - 15px);
+  }
+  
+  .form-submit button {
+    margin: 12px auto;
+  }
+}
+
+.contact-section > h1 {
+  text-align: center;
+
+  margin-bottom: 12px;
+
+  color: var(--primary);
+}
+
+.contact-section #contact-subtitle {
+  font: 400 18px/28px 'Khand', sans-serif;
+}
+
+.contact-form {
+  margin: 24px 0;
+}
+
+.form-group {
+  display: grid;
+  margin-bottom: 12px;
+}
+
+.form-group label {
+  color: var(--primary);
+  font: 500 18px/28px 'Khand', sans-serif;
+}
+
+.form-error {
+  color: var(--error);
+  font: 500 18px/28px 'Khand', sans-serif;
+}
+
+.form-group #topic {
+  background-color: inherit;
+  padding: 4px 8px;
+  border: 1px solid var(--black);
+}
+
+.fa-star:hover {
+  cursor: pointer;
+}
+
+.checked {
+  color: var(--primary);
+}
+
+.form-submit {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 12px auto;
+}
+
+.form-submit button {
+  padding: 4px 16px;
+  font: 500 18px/28px 'Khand', sans-serif;
+
+  width: 180px;
+
+  color: var(--white);
+
+  background-color: var(--primary);
+  border: 1px solid var(--primary);
+  border-radius: 5px;
+}
+
+.form-submit button:hover {
+  opacity: 0.8;
+}

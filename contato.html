@@ -1,0 +1,63 @@
+<html lang="pt">
+
+<head>
+  <link rel="stylesheet" href="./styles/global.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="/styles/contact/main.css">
+</head>
+
+<body>
+  <main class="contact-main">
+    <section class="contact-section">
+      <h1>Entre em contato conosco!</h1>
+
+      <div id="contact-subtitle">
+        <p>Tem alguma sugestão? Alguma reclamação? <br /> Entre em contato conosco e iremos ler com carinho seu feedback com relação com nosso site e o nossos conteúdos. Sua ajuda é muito bem vinda</p>
+      </div>
+      <form class="contact-form" action="javascript:formSubmit()">
+        <div class="form-group">
+          <label for="email" class="control-label">E-mail</label>
+          <input type="email" id="email" name="email">
+          <p class="form-error email-error" hidden></p>
+        </div>
+        <div class="form-group">
+          <label for="name" class="control-label">Nome</label>
+          <input type="text" id="name" name="name">
+          <p class="form-error name-error" hidden></p>
+        </div>
+        <div class="form-group">
+          <label for="topic" class="control-label">Assunto</label>
+          <select id="topic" name="topic">
+          </select>
+          <p class="form-error topic-error" hidden></p>
+        </div>
+        <div class="form-group">
+          <label for="comment" class="control-label">Mensagem</label>
+          <textarea type="text" id="comment" name="comment" rows="5" cols="30" placeholder="Deixe aqui seu comentário/avaliação..."></textarea>
+          <p class="form-error comment-error" hidden></p>
+        </div>
+        <div class="form-group form-rating">
+          <label for="rating" class="control-label">Avaliação</label>
+          <div class="rating-stars">
+            <i class="fa fa-star fa-2x"></i>
+            <i class="fa fa-star fa-2x"></i>
+            <i class="fa fa-star fa-2x"></i>
+            <i class="fa fa-star fa-2x"></i>
+            <i class="fa fa-star fa-2x"></i>
+          </div>
+          <p class="form-error rating-error" hidden></p>
+        </div>
+        <div class="form-submit">
+          <button type="submit">Enviar</button>
+        </div>
+      </form>
+    </section>
+  </main>
+</body>
+
+<script src="/scripts/head.js"></script>
+<script src="/scripts/nav.js"></script>
+<script src="/scripts/footer.js"></script>
+<script src="/scripts/contact.js"></script>
+
+</html>

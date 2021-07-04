@@ -11,17 +11,21 @@ const findActive = (path) => {
 
 const menuOptions = [
   {
-    'name': 'INÍCIO',
-    'path': '/'
+    name: 'INÍCIO',
+    path: '/'
   },
   {
-    'name': 'FILMES',
-    'path': '/filmes.html'
+    name: 'FILMES',
+    path: '/filmes.html'
   },
   {
-    'name': 'SÉRIES',
-    'path': '/series.html'
+    name: 'SÉRIES',
+    path: '/series.html'
   },
+  {
+    name: 'CONTATO',
+    path: '/contato.html'    
+  }
 ].map(({name, path}) => 
   `<li class="menu-item">
     <a href="${path}" class="${findActive(path)}">${name}</a>

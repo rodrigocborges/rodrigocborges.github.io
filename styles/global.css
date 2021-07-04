@@ -13,6 +13,16 @@ body, input, button, textarea {
   font: 400 16px 'Khand', sans-serif;
 }
 
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 10px var(--primary);
+}
+
+button:not(:disabled):hover {
+  cursor: pointer;
+}
+
 a {
   text-decoration: none;
 }
