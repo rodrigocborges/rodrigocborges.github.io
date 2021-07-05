@@ -46,6 +46,7 @@ nav.innerHTML = `
         <a class="link" href="/">Início</a>
         <a class="link" href="/filmes.html">Filmes</a>
         <a class="link" href="/series.html">Séries</a>
+        <a class="link" href="/contato.html">Contato</a>
       </div>
     </div>
   </section>

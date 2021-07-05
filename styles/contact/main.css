@@ -4,25 +4,17 @@
   align-items: center;
 
   margin: 32px auto;
-
-  height: 100%;
 }
 
 .contact-section { 
   margin: 0 auto;
   padding: 24px 32px;
 
-  width: 50%;
+  width: 544px;
 
   background-color: var(--white);
 
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-}
-
-@media (min-width: 617px) and (max-width: 1074px) {
-  .contact-section { 
-    width: 544px;
-  }
 }
 
 @media (min-width: 320px) and (max-width: 616px) {
@@ -32,6 +24,12 @@
   
   .form-submit button {
     margin: 12px auto;
+  }
+}
+
+@media (min-height: 937px) {
+  .contact-main {
+    height: 100%;
   }
 }
 
