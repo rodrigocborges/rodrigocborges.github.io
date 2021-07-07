@@ -4,6 +4,14 @@
   padding: 0 25px;
 }
 
+.card #subtitle {
+  font-size: 22px;
+}
+
+.card #subtitle {
+  font-size: 28px;
+}
+
 #section2-container {
   padding: 0 25px;
 }
@@ -19,12 +27,4 @@
   .long-card-container {
     text-align: center;
   }
-}
-
-.card #subtitle {
-  font-size: 22px;
-}
-
-.card #subtitle {
-  font-size: 28px;
 }
