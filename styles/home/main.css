@@ -17,7 +17,8 @@ main {
 }
 
 .card > img {
-	width: 100%;
+	height: 298px;
+  width: 100%;
 }
 
 .card > div {
@@ -71,8 +72,6 @@ main {
   text-align: start;
 
   background: var(--background);
-  
-  cursor: pointer;
 }
 
 .long-card-container:hover {
@@ -107,6 +106,6 @@ main {
 }
 
 #read-more > a {
-  font: 700 14px/16px 'Khand', sans-serif;
+  font: 700 18px/18px 'Khand', sans-serif;
   color: var(--primary);
 }
