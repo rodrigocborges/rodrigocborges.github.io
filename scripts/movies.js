@@ -78,10 +78,9 @@ const baseGenres = [
 ];
 
 const baseImgURL = '';
-const token = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkOGNjNmVkMzEwMzQyNGNkZDkzNzI0MWEyZjFiMDA5NyIsInN1YiI6IjYwZTYyNTdkY2QyMDQ2MDA1YzVmYjNiNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.0paEQhuV_l_nlXwStyfkrGtAkwGKktTbbdXirV181TM`;
 
 const headers = {
-  Authorization: token
+  Authorization: ''
 }
 
 const [upcoming, popular] = document.getElementsByTagName('button');
