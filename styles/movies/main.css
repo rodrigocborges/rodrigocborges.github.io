@@ -1,0 +1,112 @@
+.content-section {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 25px;
+
+  margin: 30px auto;
+  padding: 0 150px;
+}
+
+@media (min-width: 730px) and (max-width: 1023px) {
+  .content-section {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+  
+    margin: 30px auto;
+    padding: 0 10px;
+  }
+}
+
+@media (min-width: 1440px) and (max-width: 1919px) {
+  .content-section {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1920px) {
+  .content-section {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
+
+.card-container {
+  width: 342px;
+  margin: 0 auto;
+
+  height: 100%;
+  border: 1px solid rgba(130, 87, 229, 0.45);
+}
+
+.card-title-container {
+  display: flex;
+  
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+
+  padding: 4px 12px;
+
+  height: 80px;
+}
+
+h2, h3, h4 {
+  color: var(--primary);
+}
+
+.card-content {
+  width: 100%;
+  padding: 4px 12px;
+}
+
+.card-content > div {
+  margin-top: 8px;
+}
+
+.genres-toats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+  gap: 5px;
+  
+  text-align: center;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.genres-toats div {
+  border-radius: 6px;
+  background: orange;
+  padding: 2px 6px;
+  font: bold 18px/32px 'Khand', sans-serif;
+  color: var(--white);
+
+  margin-right: 4px;
+}
+
+.card-synopsis p {
+  text-align: justify;
+  font: 400 16px/28px 'Khand', sans-serif;
+}
+
+.card-infos {
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.card-infos > div:not(:last-child) {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  justify-content: center;
+  align-items: center;
+  gap: 25px;
+
+  margin: 4px 0;
+}
+
+.card-infos > div {
+  text-align: center;
+}
+
+.card-infos p {
+  font: 400 18px/28px 'Khand', sans-serif;
+}
