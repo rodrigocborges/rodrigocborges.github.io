@@ -1,0 +1,22 @@
+.content-section {
+  display: grid;
+  grid-template-columns: 1fr;
+
+  margin: 16px 0;
+  padding: 0;
+}
+
+@media (max-width: 352px) {
+  .content-section {
+    margin: 12px 0;
+    padding: 2px;
+  }
+
+  .card-container {
+    width: 320px;
+  }
+
+  img {
+    width: calc(100% - 5px);
+  }
+}
