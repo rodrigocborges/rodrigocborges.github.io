@@ -85,85 +85,90 @@ const headers = {
 
 async function formatRequestData(data) {
   const topResults = data.results;
-  const promises = topResults.map(({ poster_path }) => fetch(`http://image.tmdb.org/t/p/w342${poster_path}`));
+  const promises = topResults.map(({ poster_path }) => fetch(`https://image.tmdb.org/t/p/w342${poster_path}`));
 
-  const resolvedImages = await Promise.all(promises);
-
-  const innerHTML = topResults.map((
-    { 
-      adult, 
-      genre_ids,
-      original_language,
-      overview,
-      popularity,
-      release_date,
-      title,
-      vote_average,
-      vote_count 
-    }, index) => {
-    const genres = genre_ids.map(id => 
-      `<div>
-        ${baseGenres.find(g => g.id === id)['name']}
-      </div>`
-    ).join('');
-
-    return `
-      <div class="card-container">
-        <div class="card-title-container">
-          <h2>${title}</h2>
+  try {
+    const resolvedImages = await Promise.all(promises);
+  
+    const innerHTML = topResults.map((
+      { 
+        adult, 
+        genre_ids,
+        original_language,
+        overview,
+        popularity,
+        release_date,
+        title,
+        vote_average,
+        vote_count 
+      }, index) => {
+      const genres = genre_ids.map(id => 
+        `<div>
+          ${baseGenres.find(g => g.id === id)['name']}
+        </div>`
+      ).join('');
+  
+      return `
+        <div class="card-container">
+          <div class="card-title-container">
+            <h2>${title}</h2>
+          </div>
+          <img src="${resolvedImages[index].url}" alt="Imagem ${title}">
+          <div class="card-content">
+            <div class="card-genres">
+              <h3>Gêneros</h3>
+              <div class="genres-toats">
+                ${genres}
+              </div>
+            </div>
+            <div class="card-synopsis">
+              <h3>Sinopse</h3>
+              <p>${overview !== '' ? overview : 'Não há uma sinopse disponível...'}</p>
+            </div>
+            <div class="card-infos">
+              <div>
+                <div>
+                  <h3>Data de lançamento</h3>
+                  <p>${new Date(release_date).toLocaleDateString('pt-BR')}</p>
+                </div>
+                <div>
+                  <h3>Popularidade</h3>
+                  <p>${popularity}</p>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <h3>Avaliação média</h3>
+                  <p>${vote_average === 0 ? '-' : vote_average}</p>
+                </div>
+                <div>
+                  <h3>Quantidade de votos</h3>
+                  <p>${vote_count === 0 ? '-' : vote_count}</p>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <h3>Adulto</h3>
+                  <p>${adult ? 'Sim' : 'Não'}</p>
+                </div>
+                <div>
+                  <h3>Língua original</h3>
+                  <p>${original_language}</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <img src="${resolvedImages[index].url}" alt="Imagem ${title}">
-        <div class="card-content">
-          <div class="card-genres">
-            <h3>Gêneros</h3>
-            <div class="genres-toats">
-              ${genres}
-            </div>
-          </div>
-          <div class="card-synopsis">
-            <h3>Sinopse</h3>
-            <p>${overview !== '' ? overview : 'Não há uma sinopse disponível...'}</p>
-          </div>
-          <div class="card-infos">
-            <div>
-              <div>
-                <h3>Data de lançamento</h3>
-                <p>${new Date(release_date).toLocaleDateString('pt-BR')}</p>
-              </div>
-              <div>
-                <h3>Popularidade</h3>
-                <p>${popularity}</p>
-              </div>
-            </div>
-            <div>
-              <div>
-                <h3>Avaliação média</h3>
-                <p>${vote_average === 0 ? '-' : vote_average}</p>
-              </div>
-              <div>
-                <h3>Quantidade de votos</h3>
-                <p>${vote_count === 0 ? '-' : vote_count}</p>
-              </div>
-            </div>
-            <div>
-              <div>
-                <h3>Adulto</h3>
-                <p>${adult ? 'Sim' : 'Não'}</p>
-              </div>
-              <div>
-                <h3>Língua original</h3>
-                <p>${original_language}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    `
-  }).join('');
-
-  const [section] = document.getElementsByClassName('content-section');
-
-  section.innerHTML = innerHTML;
+      `
+    }).join('');
+  
+    const [section] = document.getElementsByClassName('content-section');
+  
+    section.innerHTML = innerHTML;
+    
+  } catch (error) {
+    console.error('error: ', error);
+  }
 }
 
 async function upcomingClick() {
