@@ -15,3 +15,33 @@ main {
 .long-card-container {
   display: flex;
 }
+
+@media (min-width: 1440px) and (max-width: 1919px) {
+  #section1 {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  #section2-main-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1920px) and (max-width: 2559px) {
+  #section1 {
+    grid-template-columns: repeat(5, 1fr);
+  }
+
+  #section2-main-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 2560px) {
+  #section1 {
+    grid-template-columns: repeat(6, 1fr);
+  }
+
+  #section2-main-container {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
