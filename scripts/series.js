@@ -75,85 +75,89 @@ const headers = {
 
 async function formatRequestData(data) {
   const topResults = data.results.filter(top => top.poster_path);
-  const promises = topResults.map(({ poster_path }) => fetch(`http://image.tmdb.org/t/p/w342${poster_path}`));
+  const promises = topResults.map(({ poster_path }) => fetch(`https://image.tmdb.org/t/p/w342${poster_path}`));
 
-  const resolvedImages = await Promise.all(promises);
+  try {
+    const resolvedImages = await Promise.all(promises);
 
-  const innerHTML = topResults.map((
-    { 
-      first_air_date, 
-      genre_ids,
-      overview,
-      popularity,
-      name,
-      origin_country,
-      original_name,
-      vote_average,
-      vote_count 
-    }, index) => {
-    const genres = genre_ids.map(id => 
-      `<div>
-        ${baseGenres.find(g => g.id === id)['name']}
-      </div>`
-    ).join('');
+    const innerHTML = topResults.map((
+      { 
+        first_air_date, 
+        genre_ids,
+        overview,
+        popularity,
+        name,
+        origin_country,
+        original_name,
+        vote_average,
+        vote_count 
+      }, index) => {
+      const genres = genre_ids.map(id => 
+        `<div>
+          ${baseGenres.find(g => g.id === id)['name']}
+        </div>`
+      ).join('');
 
-    return `
-      <div class="card-container">
-        <div class="card-title-container">
-          <h2>${name}</h2>
+      return `
+        <div class="card-container">
+          <div class="card-title-container">
+            <h2>${name}</h2>
+          </div>
+          <img src="${resolvedImages[index] && resolvedImages[index].url}" alt="Imagem ${name}">
+          <div class="card-content">
+            <div class="card-genres">
+              <h3>Gêneros</h3>
+              <div class="genres-toats">
+                ${genres}
+              </div>
+            </div>
+            <div class="card-synopsis">
+              <h3>Sinopse</h3>
+              <p>${overview !== '' ? overview : 'Não há uma sinopse disponível...'}</p>
+            </div>
+            <div class="card-infos">
+              <div>
+                <div>
+                  <h3>Data de lançamento</h3>
+                  <p>${new Date(first_air_date).toLocaleDateString('pt-BR')}</p>
+                </div>
+                <div>
+                  <h3>Popularidade</h3>
+                  <p>${popularity}</p>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <h3>Avaliação média</h3>
+                  <p>${vote_average === 0 ? '-' : vote_average}</p>
+                </div>
+                <div>
+                  <h3>Quantidade de votos</h3>
+                  <p>${vote_count === 0 ? '-' : vote_count}</p>
+                </div>
+              </div>
+              <div>
+                <div>
+                  <h3>Nome original</h3>
+                  <p>${original_name}</p>
+                </div>
+                <div>
+                  <h3>País de origem</h3>
+                  <p>${origin_country.join(', ')}</p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
-        <img src="${resolvedImages[index] && resolvedImages[index].url}" alt="Imagem ${name}">
-        <div class="card-content">
-          <div class="card-genres">
-            <h3>Gêneros</h3>
-            <div class="genres-toats">
-              ${genres}
-            </div>
-          </div>
-          <div class="card-synopsis">
-            <h3>Sinopse</h3>
-            <p>${overview !== '' ? overview : 'Não há uma sinopse disponível...'}</p>
-          </div>
-          <div class="card-infos">
-            <div>
-              <div>
-                <h3>Data de lançamento</h3>
-                <p>${new Date(first_air_date).toLocaleDateString('pt-BR')}</p>
-              </div>
-              <div>
-                <h3>Popularidade</h3>
-                <p>${popularity}</p>
-              </div>
-            </div>
-            <div>
-              <div>
-                <h3>Avaliação média</h3>
-                <p>${vote_average === 0 ? '-' : vote_average}</p>
-              </div>
-              <div>
-                <h3>Quantidade de votos</h3>
-                <p>${vote_count === 0 ? '-' : vote_count}</p>
-              </div>
-            </div>
-            <div>
-              <div>
-                <h3>Nome original</h3>
-                <p>${original_name}</p>
-              </div>
-              <div>
-                <h3>País de origem</h3>
-                <p>${origin_country.join(', ')}</p>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    `
-  }).join('');
+      `
+    }).join('');
 
-  const [section] = document.getElementsByClassName('content-section');
+    const [section] = document.getElementsByClassName('content-section');
 
-  section.innerHTML = innerHTML;
+    section.innerHTML = innerHTML;
+  } catch (error) {
+    console.error('error: ', error);
+  }
 }
 
 async function popularClick() {
