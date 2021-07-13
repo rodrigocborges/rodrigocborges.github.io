@@ -1,15 +1,19 @@
 <html lang="pt">
   <head>
     <link rel="stylesheet" href="./styles/global.css">
-    <link rel="stylesheet" href="./styles/movies/main.css">
-    <link rel="stylesheet" media="screen and (min-width: 320px) and (max-width: 729px)" href="./styles/movies/smallscreen.css">
+    <link rel="stylesheet" href="./styles/movies-tvshows/main.css">
+    <link rel="stylesheet" media="screen and (min-width: 320px) and (max-width: 729px)" href="./styles/movies-tvshows/smallscreen.css">
   </head>
 
   <body>
     <main>
-     <button type="button" onclick="upcomingClick()">Upcoming</button>
-     <button type="button" onclick="popularClick()">Popular</button>
-
+      <section class="buttons-section">
+        <h1>Sem idéias para filme? Escolha uma categoria e nós te indicamos as melhores opções</h1>
+        <div>
+          <button type="button" id="btn1" onclick="upcomingClick()">Próximos filmes</button>
+          <button type="button" id="btn2" onclick="popularClick()">Mais populares</button>
+        </div>
+      </section>
 
       <section class="content-section"></section>
     </main>

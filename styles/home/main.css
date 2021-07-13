@@ -67,6 +67,11 @@ main {
   font: bold 36px/30px 'Khand', sans-serif;
 }
 
+#section2-main-container {
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
 .long-card-container {
   margin-top: 20px;
   text-align: start;

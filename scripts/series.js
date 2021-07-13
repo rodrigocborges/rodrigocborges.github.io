@@ -1,11 +1,7 @@
 const baseGenres = [
   {
-    id: 28,
-    name: "Ação"
-  },
-  {
-    id: 12,
-    name: "Aventura"
+    id: 10759,
+    name: "Action & Adventure"
   },
   {
     id: 16,
@@ -32,50 +28,44 @@ const baseGenres = [
     name: "Família"
   },
   {
-    id: 14,
-    name: "Fantasia"
-  },
-  {
-    id: 36,
-    name: "História"
-  },
-  {
-    id: 27,
-    name: "Terror"
-  },
-  {
-    id: 10402,
-    name: "Música"
+    id: 10762,
+    name: "Kids"
   },
   {
     id: 9648,
     name: "Mistério"
   },
   {
-    id: 10749,
-    name: "Romance"
+    id: 10763,
+    name: "News"
   },
   {
-    id: 878,
-    name: "Ficção científica"
+    id: 10764,
+    name: "Reality"
   },
   {
-    id: 10770,
-    name: "Cinema TV"
+    id: 10765,
+    name: "Sci-Fi & Fantasy"
   },
   {
-    id: 53,
-    name: "Thriller"
+    id: 10766,
+    name: "Soap"
   },
   {
-    id: 10752,
-    name: "Guerra"
+    id: 10767,
+    name: "Talk"
+  },
+  {
+    id: 10768,
+    name: "War & Politics"
   },
   {
     id: 37,
     name: "Faroeste"
   }
 ];
+
+const [upcoming, popular] = document.getElementsByTagName('button');
 
 const token = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkOGNjNmVkMzEwMzQyNGNkZDkzNzI0MWEyZjFiMDA5NyIsInN1YiI6IjYwZTYyNTdkY2QyMDQ2MDA1YzVmYjNiNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.0paEQhuV_l_nlXwStyfkrGtAkwGKktTbbdXirV181TM`;
 
@@ -84,20 +74,20 @@ const headers = {
 }
 
 async function formatRequestData(data) {
-  const topResults = data.results;
+  const topResults = data.results.filter(top => top.poster_path);
   const promises = topResults.map(({ poster_path }) => fetch(`http://image.tmdb.org/t/p/w342${poster_path}`));
 
   const resolvedImages = await Promise.all(promises);
 
   const innerHTML = topResults.map((
     { 
-      adult, 
+      first_air_date, 
       genre_ids,
-      original_language,
       overview,
       popularity,
-      release_date,
-      title,
+      name,
+      origin_country,
+      original_name,
       vote_average,
       vote_count 
     }, index) => {
@@ -110,9 +100,9 @@ async function formatRequestData(data) {
     return `
       <div class="card-container">
         <div class="card-title-container">
-          <h2>${title}</h2>
+          <h2>${name}</h2>
         </div>
-        <img src="${resolvedImages[index].url}" alt="Imagem ${title}">
+        <img src="${resolvedImages[index] && resolvedImages[index].url}" alt="Imagem ${name}">
         <div class="card-content">
           <div class="card-genres">
             <h3>Gêneros</h3>
@@ -128,7 +118,7 @@ async function formatRequestData(data) {
             <div>
               <div>
                 <h3>Data de lançamento</h3>
-                <p>${new Date(release_date).toLocaleDateString('pt-BR')}</p>
+                <p>${new Date(first_air_date).toLocaleDateString('pt-BR')}</p>
               </div>
               <div>
                 <h3>Popularidade</h3>
@@ -147,12 +137,12 @@ async function formatRequestData(data) {
             </div>
             <div>
               <div>
-                <h3>Adulto</h3>
-                <p>${adult ? 'Sim' : 'Não'}</p>
+                <h3>Nome original</h3>
+                <p>${original_name}</p>
               </div>
               <div>
-                <h3>Língua original</h3>
-                <p>${original_language}</p>
+                <h3>País de origem</h3>
+                <p>${origin_country.join(', ')}</p>
               </div>
             </div>
           </div>
@@ -166,25 +156,10 @@ async function formatRequestData(data) {
   section.innerHTML = innerHTML;
 }
 
-async function upcomingClick() {
-  try {
-    loadingDisabled(true);
-    const response = await fetch('https://api.themoviedb.org/3/movie/upcoming?language=pt-BR', { headers });
-    const data = await response.json();
-  
-    await formatRequestData(data);
-    resetMainHeight();
-  } catch (error) {
-    console.error(error);
-  } finally {
-    loadingDisabled(false);
-  }
-};
-
 async function popularClick() {
   try {
     loadingDisabled(true);
-    const response = await fetch('https://api.themoviedb.org/3/movie/popular?language=pt-BR', { headers });
+    const response = await fetch('https://api.themoviedb.org/3/tv/popular?language=pt-BR&page=1', { headers });
     const data = await response.json();
     
     await formatRequestData(data);
@@ -206,21 +181,15 @@ const oldNames = [];
 
 function loadingDisabled(active) {
   const btn1 = document.getElementById('btn1');
-  const btn2 = document.getElementById('btn2');
   
   oldNames.push(btn1.innerText);
-  oldNames.push(btn2.innerText);
   
   if (active) {
     btn1.innerText = 'Carregando...';
-    btn2.innerText = 'Carregando...';
     btn1.setAttribute('disabled', true);
-    btn2.setAttribute('disabled', true);
   } else {
     btn1.removeAttribute('disabled');
-    btn2.removeAttribute('disabled');
     btn1.innerText = oldNames[0];
-    btn2.innerText = oldNames[1];
     oldNames = [];
   }
 }

@@ -1,20 +1,68 @@
+main {
+  margin: 30px auto;
+  padding: 0 150px;
+
+  height: 100%;
+}
+
+.buttons-section {
+  margin: 32px auto;
+}
+
+.buttons-section > h1 {
+  color: var(--success);
+  text-align: center;
+}
+
+.buttons-section > div {
+  display: flex;
+  justify-content: center;
+  text-align: center;
+
+  gap: 25px;
+
+  margin: 8px 0;
+}
+
+.buttons-section button {
+  padding: 4px 16px;
+  font: 500 18px/28px 'Khand', sans-serif;
+
+  width: 180px;
+
+  color: var(--white);
+
+  background-color: var(--primary);
+  border: 1px solid var(--primary);
+  border-radius: 5px;
+}
+
+.buttons-section button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.buttons-section button:hover {
+  opacity: 0.8;
+  transition: opacity 0.3s ease;
+}
+
 .content-section {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 25px;
-
-  margin: 30px auto;
-  padding: 0 150px;
 }
 
 @media (min-width: 730px) and (max-width: 1023px) {
+  main {
+    margin: 30px auto;
+    padding: 0 10px;
+  }
+
   .content-section {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 25px;
-  
-    margin: 30px auto;
-    padding: 0 10px;
   }
 }
 
@@ -93,7 +141,7 @@ h2, h3, h4 {
   grid-template-rows: repeat(3, 1fr);
 }
 
-.card-infos > div:not(:last-child) {
+.card-infos > div {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   justify-content: center;
