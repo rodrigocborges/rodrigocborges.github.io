@@ -1,68 +1,68 @@
 const baseGenres = [
   {
     id: 10759,
-    name: "Action & Adventure"
+    name: 'Action & Adventure',
   },
   {
     id: 16,
-    name: "Animação"
+    name: 'Animação',
   },
   {
     id: 35,
-    name: "Comédia"
+    name: 'Comédia',
   },
   {
     id: 80,
-    name: "Crime"
+    name: 'Crime',
   },
   {
     id: 99,
-    name: "Documentário"
+    name: 'Documentário',
   },
   {
     id: 18,
-    name: "Drama"
+    name: 'Drama',
   },
   {
     id: 10751,
-    name: "Família"
+    name: 'Família',
   },
   {
     id: 10762,
-    name: "Kids"
+    name: 'Kids',
   },
   {
     id: 9648,
-    name: "Mistério"
+    name: 'Mistério',
   },
   {
     id: 10763,
-    name: "News"
+    name: 'News',
   },
   {
     id: 10764,
-    name: "Reality"
+    name: 'Reality',
   },
   {
     id: 10765,
-    name: "Sci-Fi & Fantasy"
+    name: 'Sci-Fi & Fantasy',
   },
   {
     id: 10766,
-    name: "Soap"
+    name: 'Soap',
   },
   {
     id: 10767,
-    name: "Talk"
+    name: 'Talk',
   },
   {
     id: 10768,
-    name: "War & Politics"
+    name: 'War & Politics',
   },
   {
     id: 37,
-    name: "Faroeste"
-  }
+    name: 'Faroeste',
+  },
 ];
 
 const [upcoming, popular] = document.getElementsByTagName('button');
@@ -70,40 +70,50 @@ const [upcoming, popular] = document.getElementsByTagName('button');
 const token = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkOGNjNmVkMzEwMzQyNGNkZDkzNzI0MWEyZjFiMDA5NyIsInN1YiI6IjYwZTYyNTdkY2QyMDQ2MDA1YzVmYjNiNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.0paEQhuV_l_nlXwStyfkrGtAkwGKktTbbdXirV181TM`;
 
 const headers = {
-  Authorization: token
-}
+  Authorization: token,
+};
 
 async function formatRequestData(data) {
-  const topResults = data.results.filter(top => top.poster_path);
-  const promises = topResults.map(({ poster_path }) => fetch(`https://image.tmdb.org/t/p/w342${poster_path}`));
+  const topResults = data.results.filter((top) => top.poster_path);
+  const promises = topResults.map(({ poster_path }) =>
+    fetch(`https://image.tmdb.org/t/p/w342${poster_path}`)
+  );
 
-  try {
-    const resolvedImages = await Promise.all(promises);
+  const resolvedImages = await Promise.all(promises);
 
-    const innerHTML = topResults.map((
-      { 
-        first_air_date, 
-        genre_ids,
-        overview,
-        popularity,
-        name,
-        origin_country,
-        original_name,
-        vote_average,
-        vote_count 
-      }, index) => {
-      const genres = genre_ids.map(id => 
-        `<div>
-          ${baseGenres.find(g => g.id === id)['name']}
+  const innerHTML = topResults
+    .map(
+      (
+        {
+          first_air_date,
+          genre_ids,
+          overview,
+          popularity,
+          name,
+          origin_country,
+          original_name,
+          vote_average,
+          vote_count,
+        },
+        index
+      ) => {
+        const genres = genre_ids
+          .map(
+            (id) =>
+              `<div>
+          ${baseGenres.find((g) => g.id === id)['name']}
         </div>`
-      ).join('');
+          )
+          .join('');
 
-      return `
+        return `
         <div class="card-container">
           <div class="card-title-container">
             <h2>${name}</h2>
           </div>
-          <img src="${resolvedImages[index] && resolvedImages[index].url}" alt="Imagem ${name}">
+          <img src="${
+            resolvedImages[index] && resolvedImages[index].url
+          }" alt="Imagem ${name}">
           <div class="card-content">
             <div class="card-genres">
               <h3>Gêneros</h3>
@@ -113,7 +123,9 @@ async function formatRequestData(data) {
             </div>
             <div class="card-synopsis">
               <h3>Sinopse</h3>
-              <p>${overview !== '' ? overview : 'Não há uma sinopse disponível...'}</p>
+              <p>${
+                overview !== '' ? overview : 'Não há uma sinopse disponível...'
+              }</p>
             </div>
             <div class="card-infos">
               <div>
@@ -149,23 +161,25 @@ async function formatRequestData(data) {
             </div>
           </div>
         </div>
-      `
-    }).join('');
+      `;
+      }
+    )
+    .join('');
 
-    const [section] = document.getElementsByClassName('content-section');
+  const [section] = document.getElementsByClassName('content-section');
 
-    section.innerHTML = innerHTML;
-  } catch (error) {
-    console.error('error: ', error);
-  }
+  section.innerHTML = innerHTML;
 }
 
 async function popularClick() {
   try {
     loadingDisabled(true);
-    const response = await fetch('https://api.themoviedb.org/3/tv/popular?language=pt-BR&page=1', { headers });
+    const response = await fetch(
+      'https://api.themoviedb.org/3/tv/popular?language=pt-BR&page=1',
+      { headers }
+    );
     const data = await response.json();
-    
+
     await formatRequestData(data);
     resetMainHeight();
   } catch (error) {
@@ -173,21 +187,21 @@ async function popularClick() {
   } finally {
     loadingDisabled(false);
   }
-};
+}
 
 function resetMainHeight() {
   const [main] = document.getElementsByTagName('main');
 
-  main.style = 'height: auto;'
+  main.style = 'height: auto;';
 }
 
 const oldNames = [];
 
 function loadingDisabled(active) {
   const btn1 = document.getElementById('btn1');
-  
+
   oldNames.push(btn1.innerText);
-  
+
   if (active) {
     btn1.innerText = 'Carregando...';
     btn1.setAttribute('disabled', true);

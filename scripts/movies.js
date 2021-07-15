@@ -1,114 +1,122 @@
 const baseGenres = [
   {
     id: 28,
-    name: "Ação"
+    name: 'Ação',
   },
   {
     id: 12,
-    name: "Aventura"
+    name: 'Aventura',
   },
   {
     id: 16,
-    name: "Animação"
+    name: 'Animação',
   },
   {
     id: 35,
-    name: "Comédia"
+    name: 'Comédia',
   },
   {
     id: 80,
-    name: "Crime"
+    name: 'Crime',
   },
   {
     id: 99,
-    name: "Documentário"
+    name: 'Documentário',
   },
   {
     id: 18,
-    name: "Drama"
+    name: 'Drama',
   },
   {
     id: 10751,
-    name: "Família"
+    name: 'Família',
   },
   {
     id: 14,
-    name: "Fantasia"
+    name: 'Fantasia',
   },
   {
     id: 36,
-    name: "História"
+    name: 'História',
   },
   {
     id: 27,
-    name: "Terror"
+    name: 'Terror',
   },
   {
     id: 10402,
-    name: "Música"
+    name: 'Música',
   },
   {
     id: 9648,
-    name: "Mistério"
+    name: 'Mistério',
   },
   {
     id: 10749,
-    name: "Romance"
+    name: 'Romance',
   },
   {
     id: 878,
-    name: "Ficção científica"
+    name: 'Ficção científica',
   },
   {
     id: 10770,
-    name: "Cinema TV"
+    name: 'Cinema TV',
   },
   {
     id: 53,
-    name: "Thriller"
+    name: 'Thriller',
   },
   {
     id: 10752,
-    name: "Guerra"
+    name: 'Guerra',
   },
   {
     id: 37,
-    name: "Faroeste"
-  }
+    name: 'Faroeste',
+  },
 ];
 
 const token = `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJkOGNjNmVkMzEwMzQyNGNkZDkzNzI0MWEyZjFiMDA5NyIsInN1YiI6IjYwZTYyNTdkY2QyMDQ2MDA1YzVmYjNiNyIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.0paEQhuV_l_nlXwStyfkrGtAkwGKktTbbdXirV181TM`;
 
 const headers = {
-  Authorization: token
-}
+  Authorization: token,
+};
 
 async function formatRequestData(data) {
   const topResults = data.results;
-  const promises = topResults.map(({ poster_path }) => fetch(`https://image.tmdb.org/t/p/w342${poster_path}`));
+  const promises = topResults.map(({ poster_path }) =>
+    fetch(`https://image.tmdb.org/t/p/w342${poster_path}`)
+  );
 
-  try {
-    const resolvedImages = await Promise.all(promises);
-  
-    const innerHTML = topResults.map((
-      { 
-        adult, 
-        genre_ids,
-        original_language,
-        overview,
-        popularity,
-        release_date,
-        title,
-        vote_average,
-        vote_count 
-      }, index) => {
-      const genres = genre_ids.map(id => 
-        `<div>
-          ${baseGenres.find(g => g.id === id)['name']}
+  const resolvedImages = await Promise.all(promises);
+
+  const innerHTML = topResults
+    .map(
+      (
+        {
+          adult,
+          genre_ids,
+          original_language,
+          overview,
+          popularity,
+          release_date,
+          title,
+          vote_average,
+          vote_count,
+        },
+        index
+      ) => {
+        const genres = genre_ids
+          .map(
+            (id) =>
+              `<div>
+          ${baseGenres.find((g) => g.id === id)['name']}
         </div>`
-      ).join('');
-  
-      return `
+          )
+          .join('');
+
+        return `
         <div class="card-container">
           <div class="card-title-container">
             <h2>${title}</h2>
@@ -123,7 +131,9 @@ async function formatRequestData(data) {
             </div>
             <div class="card-synopsis">
               <h3>Sinopse</h3>
-              <p>${overview !== '' ? overview : 'Não há uma sinopse disponível...'}</p>
+              <p>${
+                overview !== '' ? overview : 'Não há uma sinopse disponível...'
+              }</p>
             </div>
             <div class="card-infos">
               <div>
@@ -159,24 +169,25 @@ async function formatRequestData(data) {
             </div>
           </div>
         </div>
-      `
-    }).join('');
-  
-    const [section] = document.getElementsByClassName('content-section');
-  
-    section.innerHTML = innerHTML;
-    
-  } catch (error) {
-    console.error('error: ', error);
-  }
+      `;
+      }
+    )
+    .join('');
+
+  const [section] = document.getElementsByClassName('content-section');
+
+  section.innerHTML = innerHTML;
 }
 
 async function upcomingClick() {
   try {
     loadingDisabled(true);
-    const response = await fetch('https://api.themoviedb.org/3/movie/upcoming?language=pt-BR', { headers });
+    const response = await fetch(
+      'https://api.themoviedb.org/3/movie/upcoming?language=pt-BR',
+      { headers }
+    );
     const data = await response.json();
-  
+
     await formatRequestData(data);
     resetMainHeight();
   } catch (error) {
@@ -184,14 +195,17 @@ async function upcomingClick() {
   } finally {
     loadingDisabled(false);
   }
-};
+}
 
 async function popularClick() {
   try {
     loadingDisabled(true);
-    const response = await fetch('https://api.themoviedb.org/3/movie/popular?language=pt-BR', { headers });
+    const response = await fetch(
+      'https://api.themoviedb.org/3/movie/popular?language=pt-BR',
+      { headers }
+    );
     const data = await response.json();
-    
+
     await formatRequestData(data);
     resetMainHeight();
   } catch (error) {
@@ -199,12 +213,12 @@ async function popularClick() {
   } finally {
     loadingDisabled(false);
   }
-};
+}
 
 function resetMainHeight() {
   const [main] = document.getElementsByTagName('main');
 
-  main.style = 'height: auto;'
+  main.style = 'height: auto;';
 }
 
 const oldNames = [];
@@ -212,10 +226,10 @@ const oldNames = [];
 function loadingDisabled(active) {
   const btn1 = document.getElementById('btn1');
   const btn2 = document.getElementById('btn2');
-  
+
   oldNames.push(btn1.innerText);
   oldNames.push(btn2.innerText);
-  
+
   if (active) {
     btn1.innerText = 'Carregando...';
     btn2.innerText = 'Carregando...';
