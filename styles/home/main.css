@@ -54,15 +54,15 @@ main {
   background: var(--white);
 }
 
-#section2-container {
+#section-container {
   padding: 0 15px;
 }
 
-#section2-container > div:first-child {
+#section-container > div:first-child {
   margin-bottom: 20px;
 }
 
-#section2-container > h2 {
+#section-container > h2 {
   color: var(--primary);
   font: bold 36px/30px 'Khand', sans-serif;
 }
@@ -70,6 +70,7 @@ main {
 #section2-main-container {
   display: grid;
   grid-template-columns: 1fr;
+  gap: 15px;
 }
 
 .long-card-container {
@@ -113,4 +114,21 @@ main {
 #read-more > a {
   font: 700 18px/18px 'Khand', sans-serif;
   color: var(--primary);
+}
+
+#section3 {
+  width: 100%;
+
+  margin-top: 16px;
+  padding: 18px 0 36px;
+}
+
+#section3 > div > h2 {
+  margin-bottom: 16px;
+}
+
+#trailers-container {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
 }

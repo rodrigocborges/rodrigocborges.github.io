@@ -2,7 +2,7 @@ const mainCards = [
   {
     "img": "https://images.unsplash.com/photo-1616530940355-351fabd9524b?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=388&q=80",
     "subtitle": "Filmes que não saem de moda",
-    "url": "/trending/filmes-classicos.html",
+    "url": "#",
   },
   {
     "img": "https://images.unsplash.com/photo-1601513445498-5dbffc8d5d5a?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=388&q=80",
@@ -17,7 +17,7 @@ const mainCards = [
   {
     "img": "https://images.unsplash.com/photo-1512070679279-8988d32161be?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=388&q=80",
     "subtitle": "Netflix aumenta o catálogo, confira",
-    "url": "/trending/netflix-catalogo.html",
+    "url": "#",
   },
   {
     "img": "https://images.unsplash.com/photo-1593361351718-6b853f7b3431?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=388&q=80",
@@ -27,7 +27,7 @@ const mainCards = [
   {
     "img": "https://images.unsplash.com/photo-1608889825103-eb5ed706fc64?ixid=MnwxMjA3fDB8MHxzZWFyY2h8NDZ8fHR2JTIwc2hvd3N8ZW58MHwyfDB8fA%3D%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=388&q=80",
     "subtitle": "Um pouco mais sobre Star Wars",
-    "url": "/trending/mais-sobre-star-wars.html",
+    "url": "#",
   }
 ]
 
@@ -35,7 +35,7 @@ const section1 = document.getElementById('section1');
 
 section1.innerHTML = mainCards.map(({ img, subtitle, url }) => 
  `<a class="card" href=${url}>
-    <img src=${img} alt="Cartão de notícia">
+    <img src=${img} alt="Cartão de notícia ${subtitle}">
     <div id="subtitle">
       <p>${subtitle}</p>
     </div>
